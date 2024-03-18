@@ -10,6 +10,7 @@ const GRID_HEIGHT = 5
 function App() {
   return (
     <>
+      <h1>Robots</h1>
       <Grid width={GRID_WIDTH} height={GRID_HEIGHT} />
     </>
   )

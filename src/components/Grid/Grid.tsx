@@ -60,7 +60,7 @@ const Grid = ({
   const [selectedCell, setSelectedCell] = useState<{row: number, col: number} | null>(null)
   const robotIdRef = useRef(1)
   const intervalIdRef = useRef(-1)
-  const robotsInitialRef = useRef(robots) 
+  const robotsInitialRef = useRef(JSON.parse(JSON.stringify(robots))) 
 
   const incrementRobotId = () => {
     robotIdRef.current = robotIdRef.current + 1
@@ -322,7 +322,7 @@ const Grid = ({
           setCells(Array(height).fill(Array(width).fill(null)))
         }}
         onReset={() => {
-          setRobots(robotsInitialRef.current)
+          setRobots(JSON.parse(JSON.stringify(robotsInitialRef.current)))
           setCells(Array(height).fill(Array(width).fill(null)))
         }}/>
     </div>

@@ -113,24 +113,26 @@ const Cockpit = (props: CockpitProps) => {
               />
               </div>
               <div className={styles.buttons}>
-                <button onClick={handleInitRobot}>Init Robot</button>
-                <button onClick={handleCancelInitRobot}>Cancel</button>
+                <button onClick={handleInitRobot} className={styles.button}>Init Robot</button>
+                <button onClick={handleCancelInitRobot} className={`${styles.button} ${styles.buttonAttention}`}>Cancel</button>
               </div>
             </>
           : (props.gameState === GameState.Running || props.gameState === GameState.Pausing)
-            ? <>
-              <p>Game is Running</p>
-                <div className={styles.buttons}>
-                  <button onClick={handleStart}>{props.gameState === GameState.Running ? 'Stop' : 'Run'}</button>
-                </div>
+            ? (
+              <>
+                <p>Running</p>
+                  <div className={styles.buttons}>
+                    <button onClick={handleStart} className={`${styles.button} ${props.gameState === GameState.Running && styles.buttonAttention}`}>{props.gameState === GameState.Running ? 'Pause' : 'Run'}</button>
+                  </div>
               </>
+            )
             : props.gameState === GameState.Setup && (
               <>
-                <p>Setting up Robots</p>
+                <p>To add a Robot<br/>select a Cell on the left</p>
                 <div className={styles.buttons}>
                   <button onClick={handleStart} className={styles.button}>Run</button>
                   <button onClick={handleReset} className={styles.button}>Reset</button>
-                  <button onClick={handleClear} className={`${styles.button} ${styles.buttonClear}`}>Clear</button>
+                  <button onClick={handleClear} className={`${styles.button} ${styles.buttonAttention}`}>Clear</button>
                 </div>
               </>
             )
